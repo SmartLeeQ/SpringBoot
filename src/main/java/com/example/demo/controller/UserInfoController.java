@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.UserInfo;
+import com.example.demo.ret.RetResponse;
+import com.example.demo.ret.RetResult;
 import com.example.demo.service.UserInfoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,15 @@ public class UserInfoController {
         return "hello SpringBoot";
     }
 
+//    @PostMapping("/selectById")
+//    public UserInfo selectById(Integer id){
+//        return userInfoService.selectById(id);
+//    }
     @PostMapping("/selectById")
-    public UserInfo selectById(Integer id){
-        return userInfoService.selectById(id);
+    public RetResult<UserInfo> selectById(Integer id){
+        UserInfo userInfo = userInfoService.selectById(id);
+        return RetResponse.makeOKRsp(userInfo);
     }
+
 }
 
